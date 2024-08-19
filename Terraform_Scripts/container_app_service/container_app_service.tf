@@ -17,7 +17,7 @@ resource "azurerm_service_plan" "linux_plan" {
   sku_name            = "B1"
 }
 
-# Define the Container-based App Service
+# Define the Container-based App Service without the Docker container configuration
 resource "azurerm_app_service" "container_service" {
   name                = "rg-bookportal-container-app"
   location            = azurerm_resource_group.example.location
@@ -25,7 +25,6 @@ resource "azurerm_app_service" "container_service" {
   app_service_plan_id = azurerm_service_plan.linux_plan.id
 
   site_config {
-    linux_fx_version = "DOCKER|sgtrainingacr.azurecr.io/sgbookportal:latest"
   }
 }
 
